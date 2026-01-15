@@ -1,0 +1,157 @@
+<!-- boutique.html -->
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maison Élégante - Boutique</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">Maison Élégante</a>
+      <nav class="main-nav">
+        <a href="index.html">Accueil</a>
+        <a href="boutique.html" class="active">Boutique</a>
+        <a href="apropos.html">À propos</a>
+        <a href="contact.html">Contact</a>
+        <button id="cart-btn-2" class="cart-btn">Panier <span id="cart-count-2">0</span></button>
+      </nav>
+      <button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="shop-intro">
+      <h1>La boutique</h1>
+      <p class="lead">Sélection de pièces durables et élégantes. Utilisez les filtres pour affiner votre recherche.</p>
+
+      <div class="filters" id="filters">
+        <div class="filter-group">
+          <label for="filter-category" style="font-weight:600;color:var(--color-primary);margin-right:6px;">Catégorie</label>
+          <select id="filter-category" class="select">
+            <option value="all">Toutes</option>
+            <option value="robes">Robes</option>
+            <option value="hauts">Hauts</option>
+            <option value="bas">Bas</option>
+            <option value="vestes">Vestes</option>
+            <option value="accessoires">Accessoires</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-price" style="font-weight:600;color:var(--color-primary);margin-right:6px;">Prix</label>
+          <select id="filter-price" class="select">
+            <option value="all">Tous</option>
+            <option value="0-30">0 - 30 €</option>
+            <option value="30-60">30 - 60 €</option>
+            <option value="60-100">60 - 100 €</option>
+            <option value="100-9999">100 €+</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <button id="clear-filters" class="btn">Réinitialiser</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-grid" id="products-grid">
+      <!-- Produits injectés par script.js -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <strong>Maison Élégante</strong> — Durabilité • Élégance • Accessibilité</p>
+    <nav class="footer-nav">
+      <a href="apropos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+      <a href="boutique.html">Boutique</a>
+    </nav>
+
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="socials">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook" style="margin-left:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 2h-3a4 4 0 0 0-4 4v3H8v4h3v8h4v-8h3l1-4h-4V6a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest" style="margin-left:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8.5 21s-.5-3 .1-4.5c.6-1.5 3.4-6.1 3.4-6.1s-.9-1.6-.9-3.8c0-3.6 2.6-6.3 6.1-6.3 3.6 0 6.1 2.6 6.1 6.3 0 3.6-2.2 6.6-5.3 6.6-1.8 0-3.2-1.2-3.2-1.2s-.7 3.1-.9 3.9c-.3 1.2-.9 2.9-1.4 3.9"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Modal listing all images (global) -->
+<div id="images-modal" class="cart-modal hidden" aria-hidden="true" style="align-items:flex-start; padding-top:60px;">
+  <div class="cart-content container" style="max-width:900px;">
+    <button class="close-images close-cart" aria-label="Fermer">✕</button>
+    <h3>Images utilisées sur cette page</h3>
+    <p>Liste des URLs d'images (cliquez pour ouvrir dans un nouvel onglet)</p>
+    <ul id="images-list" style="max-height:400px; overflow:auto; list-style:none; padding-left:0;"></ul>
+  </div>
+</div>
+
+
+  <!-- Cart modal (global) -->
+  <div id="cart-modal" class="cart-modal hidden" aria-hidden="true">
+    <div class="cart-content container">
+      <button id="close-cart-2" class="close-cart" aria-label="Fermer le panier">✕</button>
+      <h2>Votre panier</h2>
+      <ul id="cart-items-2" class="cart-items"></ul>
+      <div class="cart-actions">
+        <strong>Total : <span id="cart-total-2">0.00 €</span></strong>
+        <div style="margin-top:12px;">
+          <button id="checkout-btn-2" class="btn primary">Commander</button>
+          <button id="clear-cart-2" class="btn">Vider</button>
+        </div>
+      </div>
+
+      <!-- Checkout form -->
+      <form id="checkout-form-2" class="checkout-form" style="display:none;" novalidate>
+        <h3>Informations de contact pour finaliser la commande</h3>
+        <div class="checkout-row">
+          <div class="form-row"><label for="checkout-name-2">Nom complet *</label><input id="checkout-name-2" name="name" required /></div>
+          <div class="form-row"><label for="checkout-email-2">Email *</label><input id="checkout-email-2" name="email" type="email" required /></div>
+        </div>
+        <div class="checkout-row">
+          <div class="form-row"><label for="checkout-phone-2">Téléphone *</label><input id="checkout-phone-2" name="phone" type="tel" required /></div>
+          <div class="form-row"><label for="checkout-address-2">Adresse de livraison *</label><input id="checkout-address-2" name="address" required /></div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button id="confirm-order-2" type="button" class="btn primary">Confirmer la commande</button>
+          <button id="cancel-checkout-2" type="button" class="btn">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    /* Produits : plus de gammes et catégories */
+const PRODUCTS = [
+  { id: 'p1', title: 'Robe Midi Éco', price: 79.00, img: 'assets/product-p1.jpg', desc: 'Robe midi en coton biologique, coupe fluide.', category: 'robes' },
+  { id: 'p2', title: 'Chemise Lin Naturel', price: 59.00, img: 'assets/product-p2.jpg', desc: 'Chemise légère en lin, idéale pour l’été.', category: 'hauts' },
+  { id: 'p3', title: 'Pantalon Tailored', price: 89.00, img: 'assets/product-p3.jpg', desc: 'Pantalon coupe droite, tissu recyclé.', category: 'bas' },
+  { id: 'p4', title: 'Veste Oversize', price: 129.00, img: 'assets/product-p4.jpg', desc: 'Veste structurée, doublure éco-responsable.', category: 'vestes' },
+  { id: 'p5', title: 'T-shirt Basique', price: 29.00, img: 'assets/product-p5.jpg', desc: 'T-shirt en coton bio, coupe unisexe.', category: 'hauts' },
+  { id: 'p6', title: 'Écharpe Laine', price: 39.00, img: 'assets/product-p6.jpg', desc: 'Écharpe douce en laine recyclée.', category: 'accessoires' },
+  { id: 'p7', title: 'Robe Soie Recyclée', price: 149.00, img: 'assets/product-p7.jpg', desc: 'Robe élégante en soie recyclée.', category: 'robes' },
+  { id: 'p8', title: 'Pull Col V', price: 69.00, img: 'assets/product-p8.jpg', desc: 'Pull en coton recyclé, coupe ajustée.', category: 'hauts' },
+  { id: 'p9', title: 'Jean Coupe Droite', price: 99.00, img: 'assets/product-p9.jpg', desc: 'Jean durable, teinture à faible impact.', category: 'bas' },
+  { id: 'p10', title: 'Manteau Laine', price: 199.00, img: 'assets/product-p10.jpg', desc: 'Manteau chaud, coupe intemporelle.', category: 'vestes' },
+  { id: 'p11', title: 'Sac Cabas', price: 49.00, img: 'assets/product-p11.jpg', desc: 'Cabas en toile recyclée.', category: 'accessoires' },
+  { id: 'p12', title: 'Ceinture Cuir Recyclé', price: 35.00, img: 'assets/product-p12.jpg', desc: 'Ceinture élégante, boucle dorée.', category: 'accessoires' }
+];
+window.SHOP_PRODUCTS = PRODUCTS;
+
+  </script>
+</body>
+</html>
